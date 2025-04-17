@@ -31,6 +31,9 @@ public class InlineKeyboardController
 
         var session = _memoryStorage.GetSession(callbackQuery.From.Id);
 
+
+
+
         // Handle back navigation
         if (callbackQuery.Data == "← Назад")
         {
@@ -424,9 +427,15 @@ public class InlineKeyboardController
     }
     private async Task ShowConsultationMenu(CallbackQuery callbackQuery, CancellationToken ct)
     {
+        var lawyerUsernames = new List<string> { "paiiiram", "mbilshgh", "kkkk_aaaaa" };
+        var random = new Random();
+        var randomLawyerUsername = lawyerUsernames[random.Next(lawyerUsernames.Count)];
         var buttons = new List<InlineKeyboardButton[]>
         {
-            new[] { InlineKeyboardButton.WithCallbackData("Чат с юристом") },
+            new[] { InlineKeyboardButton.WithUrl(
+                "Чат с юристом",
+                $"https://t.me/{randomLawyerUsername}"
+            )},
             new[] { InlineKeyboardButton.WithCallbackData("Запись на консультацию") },
             new[] { InlineKeyboardButton.WithCallbackData("Главное меню") }
         };
